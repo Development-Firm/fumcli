@@ -17,4 +17,4 @@
 <p>FumCLi is an open-source project, and contributions are welcome! If you find a bug, or have an idea for a new feature, please open an issue on the <a href="https://github.com/Development-Firm/fumcli/">GitHub repository</a> or submit a pull request.</p>
 
 <h2>License</h2>
-<p>FumCLi is released under the MIT License. See the <a href="https://github.com/Development-Firm/fumcli/LICENSE.md">LICENSE</a> file for more information.</p>
+<p>FumCLi is released under the MIT License. See the <a href="https://github.com/Development-Firm/fumcli/blob/main/LICENSE.md">LICENSE</a> file for more information.</p>
