@@ -2,6 +2,7 @@ const { spawn } = require('child_process')
 const path = require('path')
 const fs = require('fs')
 const readline = require('readline')
+const chalk = require('chalk')
 const {
   app_temp,
   server_temp,
@@ -79,6 +80,10 @@ async function runCommands (directory_path) {
       resolve()
     })
   })
+
+  console.log(
+    chalk.green(`\nSTATUS: Boilerplate has been successfully generated\n`)
+  )
 }
 
 //Directories to be made

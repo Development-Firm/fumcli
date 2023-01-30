@@ -1,14 +1,14 @@
 const program = require('commander')
 const path = require('path')
+const { generateCrud } = require('./commandFunctions/gen_crud')
 const { starter } = require('./flagFunctions/starter')
 
 let options = {}
 
 program
-  .version('0.0.1')
   .option('-s, --starter', 'Create a starter Express server')
-  .option('-r, --routes', 'Create routes folder')
-  .option('-v, --views', 'Create views folder')
+  .version('0.0.1', '-v, --version', 'Show version')
+  .helpOption('-h, --help', 'Show help')
   .action(function () {
     options = this.opts()
   })
@@ -23,10 +23,9 @@ const genCrud = program
   )
   .option('-m, --models', 'Generate models for the entity')
   .option('-c, --controller', 'Generate a controller for the entity')
+  .option('-r, --routes', 'Create routes folder')
 
-genCrud.action(cmd => {
-  console.log(cmd.name, cmd.attributes, cmd.models, cmd.controller, cmd.output)
-})
+genCrud.action(cmd => generateCrud(path.join(__dirname, 'Temp_App/'), cmd))
 
 program.parse(process.argv)
 
@@ -49,5 +48,5 @@ if (options.starter) {
   !options.views &&
   process.argv.slice(2).length === 0
 ) {
-  console.log('No flag specified')
+  program.outputHelp()
 }
