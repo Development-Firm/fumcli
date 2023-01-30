@@ -68,12 +68,12 @@ app.use(xss()) //clean  malicious html code from user input
 //TODO: Use Router middleware
 
 //! Settings for Deployment
-app.use('/image', express.static(path.join(__dirname, 'img')))
+//app.use('/image', express.static(path.join(__dirname, 'img')))
 
 //! Middleware for handling all other(ERROR) unhandled routes
-// app.all('*', (req, res, next) => {
-//   next(new AppError("Can't find "+req.originalUrl+" , on this server!", 404)) // express automatically knows that, this is an error, so it call error handling middleware
-// })
+ app.all('*', (req, res, next) => {
+   next(new AppError("Can't find "+req.originalUrl+" , on this server!", 404)) // express automatically knows that, this is an error, so it call error handling middleware
+ })
 
 // ! ERROR HANDLING MIDDLEWARE
 app.use(globalErrorHandler)
