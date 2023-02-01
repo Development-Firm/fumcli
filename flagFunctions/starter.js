@@ -1,93 +1,90 @@
-const { spawn } = require('child_process')
-const path = require('path')
-const fs = require('fs')
-const readline = require('readline')
-const chalk = require('chalk')
+/* eslint-disable header/header */
+//[object Object]
+const {spawn} = require('child_process');
+const path = require('path');
+const fs = require('fs');
+const chalk = require('chalk');
 const {
   app_temp,
   server_temp,
   factory_handler_temp,
   error_controller_temp,
-  api_features_temp,
   app_error_temp,
   catch_async_temp,
-  config_env_template
-} = require('../templates/starter_temp')
-const { devPackageString, depPackageString } = require('./package')
-
-//File generator
-const fileGenerator = (directory_path, path, temp) =>
-  fs.writeFileSync(path.join(directory_path, path), temp)
+  config_env_template,
+  api_features_temp
+} = require('../templates/starter_temp');
+const {dev_package_string, dep_package_string} = require('./package');
 
 //Commands to be run
-async function runCommands (directory_path) {
-  const isWindows = process.platform === 'win32'
-  const cmd = isWindows ? 'cmd' : 'npm'
-  const npm_init = isWindows ? ['/c', 'npm init'] : ['init']
-  const npm_install_dep = isWindows
-    ? ['/c', `npm i ${depPackageString}`]
-    : ['i', ...depPackageString.split(' ')]
-  const npm_install_dev = isWindows
-    ? ['/c', `npm i ${devPackageString}`]
-    : ['i', ...devPackageString.split(' ')]
-  const createReactApp = isWindows
+const run_commands = async function(directory_path){
+  const is_windows = process.platform === 'win32';
+  const cmd = is_windows ? 'cmd' : 'npm';
+  const npm_init = is_windows ? ['/c', 'npm init'] : ['init'];
+  const npm_install_dep = is_windows
+    ? ['/c', `npm i ${dep_package_string}`]
+    : ['i', ...dep_package_string.split(' ')];
+  const npm_install_dev = is_windows
+    ? ['/c', `npm i ${dev_package_string}`]
+    : ['i', ...dev_package_string.split(' ')];
+  const create_react_app = is_windows
     ? ['/c', 'npx create-react-app client']
-    : ['create-react-app', 'client']
+    : ['create-react-app', 'client'];
 
-  await new Promise((resolve, reject) => {
+  await new Promise((resolve, reject)=>{
     const child = spawn(cmd, npm_init, {
       cwd: directory_path,
       shell: true,
       stdio: 'inherit'
-    })
-    child.on('exit', function (code, signal) {
-      console.log('npm init command completed')
-      resolve()
-    })
-  })
+    });
+    child.on('exit', function (code, signal){
+      console.log('npm init command completed');
+      resolve();
+    });
+  });
 
-  await new Promise((resolve, reject) => {
+  await new Promise((resolve, reject)=>{
     const child2 = spawn(cmd, npm_install_dep, {
       cwd: directory_path,
       shell: true,
       stdio: 'inherit'
-    })
-    child2.on('exit', function (code, signal) {
-      resolve()
-    })
-  })
+    });
+    child2.on('exit', function (code, signal){
+      resolve();
+    });
+  });
 
-  await new Promise((resolve, reject) => {
+  await new Promise((resolve, reject)=>{
     const child3 = spawn(cmd, npm_install_dev, {
       cwd: directory_path,
       shell: true,
       stdio: 'inherit'
-    })
-    child3.on('exit', function (code, signal) {
-      console.log('npm i command completed')
-      resolve()
-    })
-  })
+    });
+    child3.on('exit', function (code, signal){
+      console.log('npm i command completed');
+      resolve();
+    });
+  });
 
-  await new Promise((resolve, reject) => {
-    const child4 = spawn(isWindows ? cmd : 'npx', createReactApp, {
+  await new Promise((resolve, reject)=>{
+    const child4 = spawn(is_windows ? cmd : 'npx', create_react_app, {
       cwd: directory_path,
       shell: true,
       stdio: 'inherit'
-    })
-    child4.on('exit', function (code, signal) {
-      console.log('create-react-app command completed')
-      resolve()
-    })
-  })
+    });
+    child4.on('exit', function (code, signal){
+      console.log('create-react-app command completed');
+      resolve();
+    });
+  });
 
   console.log(
-    chalk.green(`\nSTATUS: Boilerplate has been successfully generated\n`)
-  )
-}
+    chalk.green('\nSTATUS: Boilerplate has been successfully generated\n')
+  );
+};
 
 //Directories to be made
-const directories = ['', 'controllers', 'utils', 'routes', 'models', 'img']
+const directories = ['', 'controllers', 'utils', 'routes', 'models', 'img'];
 
 //Template Files
 const templates = [
@@ -112,26 +109,30 @@ const templates = [
     temp: error_controller_temp
   },
   {
-    path: 'utils/apiFeatures.js',
+    path: 'utils/appError.js',
     temp: app_error_temp
+  },
+  {
+    path: 'utils/apiFeatures.js',
+    temp: api_features_temp
   },
   {
     path: 'utils/catchAsync.js',
     temp: catch_async_temp
   }
-]
+];
 
-exports.starter = directory_path => {
-  console.log('Creating project starter boilerplate...')
+exports.starter = directory_path=>{
+  console.log('Creating project starter boilerplate...');
 
   // Create the necessary directories
   if (!fs.existsSync(directory_path))
-    directories.forEach(dir => fs.mkdirSync(path.join(directory_path, dir)))
+    directories.forEach(dir=>fs.mkdirSync(path.join(directory_path, dir)));
 
   // Create template files
-  templates.forEach(el =>
-    fs.writeFileSync(path.join(directory_path, el.path), el.temp)
-  )
+  templates.forEach(
+    el=>fs.writeFileSync(path.join(directory_path, el.path), el.temp)
+  );
   // Running neccessary commands
-  runCommands(directory_path)
-}
+  run_commands(directory_path);
+};

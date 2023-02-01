@@ -23,7 +23,7 @@ const cookieParser = require('cookie-parser')
 const AppError = require('./utils/appError')
 const globalErrorHandler = require('./controllers/errorController')
 
-//TODO: Include Routers
+//<Import Router>
 
 const app = express()
 app.use(cors())
@@ -65,7 +65,7 @@ app.use(xss()) //clean  malicious html code from user input
 
 //! MiddleWare for specfic routes
 
-//TODO: Use Router middleware
+//<Use Router middleware>
 
 //! Settings for Deployment
 //app.use('/image', express.static(path.join(__dirname, 'img')))
@@ -239,7 +239,7 @@ module.exports=( err, req, res, next ) => {
 
 //Follwoing is the Code for controllers/factoryHandler.js
 exports.factory_handler_temp = `
-const catchAsync = require('../utils/catchAysnc')
+const catchAsync = require('../utils/catchAsync')
 const AppError = require('../utils/appError')
 
 // eslint-disable-next-line import/no-dynamic-require

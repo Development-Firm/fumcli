@@ -1,3 +1,4 @@
+/* eslint-disable header/header */
 //Add the required packages in the packages object below
 const packages = {
   dependencies: {
@@ -25,16 +26,18 @@ const packages = {
   devDependencies: {
     nodemon: '^2.0.19'
   }
-}
+};
 
-const convertPackages = function convertPackages (packages, dev) {
-  let packageString = ''
-  for (let package in packages) {
-    packageString += `${package}@${packages[package]} `
-  }
-  if (dev) packageString += ' --save-dev'
-  return packageString
-}
+const convert_packages = function convert_packages (_packages, dev){
+  let package_string = '';
+  for (let pkg in _packages)
 
-exports.devPackageString = convertPackages(packages.devDependencies, true)
-exports.depPackageString = convertPackages(packages.dependencies)
+    package_string += `${pkg}@${_packages[pkg]} `;
+
+  if (dev)
+    package_string += ' --save-dev';
+  return package_string;
+};
+
+exports.dev_package_string = convert_packages(packages.devDependencies, true);
+exports.dep_package_string = convert_packages(packages.dependencies);

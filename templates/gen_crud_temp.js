@@ -1,3 +1,5 @@
+/* eslint-disable header/header */
+//[object Object]
 exports.model_temp = `
 const mongoose=require( 'mongoose' );
 const validator=require( "validator" );  
@@ -71,4 +73,67 @@ const <CNAME>=mongoose.model( '<NAME>', <NAME>Schema );
 
 
 module.exports=<CNAME>;
-`
+`;
+
+exports.controller_temp = `
+const <CNAME>=require( "../models/<NAME>Model" );
+const catchAsync=require( "../utils/catchAsync" );
+const AppError=require( "../utils/appError" );
+const factory=require( './factoryHandler' );
+
+
+//Todo:  ********* helper functuions ***********
+
+
+// Optimize: get all 
+exports.getAll<CNAME>=factory.getAll( <CNAME> );
+
+// Optimize: get single data basaed on id
+exports.getSingle<CNAME>=factory.getOne( <CNAME> );
+
+// Optimize: Create  
+exports.create<CNAME>=factory.createOne( <CNAME> );
+
+// Optimize: update based on id 
+exports.update<CNAME>=factory.updateOne( <CNAME> )
+
+// Optimize: delete  based on id 
+exports.delete<CNAME>=factory.deleteOne( <CNAME> );
+
+//exports.greet=catchAsync( async ( req, res, next ) => {
+  
+  //? (2) Send the delete response with 204 code
+//  res.status( 200 ).json( {
+//    status: "success",
+//    data: "Hello World!"
+//  } )
+//} );
+`;
+
+exports.router_temp = `
+const express=require( "express" );
+const {
+  getAll<CNAME>,
+  getSingle<CNAME>,
+  create<CNAME>,
+  update<CNAME>,
+  delete<CNAME>} = require( "../controllers/<NAME>Controller" );
+
+
+const <NAME>Router=express.Router();
+
+//Optimize:   ***** Routes ******
+
+
+<NAME>Router.route( '/' ).get(getAll<CNAME>).post(create<CNAME>);
+
+<NAME>Router.route( "/:id" )
+   .get( getSingle<CNAME> )
+   .delete( delete<CNAME> )
+   .patch( update<CNAME> )
+
+
+
+module.exports=<NAME>Router;
+`;
+
