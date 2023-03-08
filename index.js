@@ -1,12 +1,11 @@
-/* eslint-disable header/header */
-//[object Object]
+#! /usr/bin/env node
+// LICENSE_CODE DevFUM
 const program = require('commander');
-const path = require('path');
-const {generate_crud} = require('./commandFunctions/gen_crud');
-const {starter} = require('./flagFunctions/starter');
+const {generate_crud} = require('./commands/gen_crud');
+const {starter} = require('./flags/starter');
 
 let options = {};
-
+const current_path = process.cwd();
 program
   .option('-s, --starter', 'Create a starter Express server')
   .version('0.0.1', '-v, --version', 'Show version')
@@ -28,7 +27,7 @@ const gen_crud = program
   .option('-c, --controller', 'Generate a controller for the entity')
   .option('-r, --routes', 'Create routes folder');
 
-gen_crud.action(cmd=>generate_crud(path.join(__dirname, 'Temp_App/'), cmd));
+gen_crud.action(cmd=>generate_crud(current_path, cmd));
 
 program.parse(process.argv);
 
@@ -36,7 +35,7 @@ program.parse(process.argv);
 
 
 if (options.starter)
-  starter(path.join(__dirname, 'Temp_App/'));
+  starter(current_path);
 
 else if (
   !options.starter &&

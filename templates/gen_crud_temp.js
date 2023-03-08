@@ -1,5 +1,4 @@
-/* eslint-disable header/header */
-//[object Object]
+// LICENSE_CODE DevFUM
 exports.model_temp = `
 const mongoose=require( 'mongoose' );
 const validator=require( "validator" );  

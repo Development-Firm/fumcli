@@ -1,5 +1,5 @@
-
-// eslint-disable-next-line header/header
+// LICENSE_CODE DevFUM
+/* eslint-disable max-len */
 const fs = require('fs');
 const chalk = require('chalk');
 const path = require('path');
@@ -78,10 +78,8 @@ const create_router = (directory_path, entity_name, attributes)=>{
   );
   let app = fs.readFileSync(path.join(directory_path, '/app.js'), 'utf-8');
   app=app.replace('<Import Router>',
-    // eslint-disable-next-line max-len
     `<Import Router>\nconst ${entity_name}Router = require('./routes/${entity_name}Router');\n`)
     .replace('<Use Router middleware>',
-      // eslint-disable-next-line max-len
       `<Use Router middleware>\napp.use('/api/v1/${entity_name}', ${entity_name}Router)`);
   fs.writeFileSync(
     path.join(directory_path, 'app.js'),
@@ -107,7 +105,6 @@ exports.generate_crud = (
     );
     return;
   }
-  console.log(models,controller,routes)
   if (models)
     create_model(directory_path, name, attributes);
   if (controller)

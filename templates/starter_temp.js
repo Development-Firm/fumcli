@@ -1,3 +1,5 @@
+// LICENSE_CODE DevFUM
+/* eslint-disable max-len */
 exports.config_env_template = `
 NODE_ENV= development
 DATABASE_PASSWORD=fERi4hHH26dr5wTg
@@ -6,7 +8,7 @@ JWT_SECRET=tferfa-efsfy-kfoi-kfam-nfay
 JWT_EXPIRE_TIME=90d
 JWT_COOKIE_EXPIRE_TIME=90
 PORT=3001
-`
+`;
 
 //Follwoing is the Code for app.js
 exports.app_temp = `
@@ -79,7 +81,7 @@ app.use(xss()) //clean  malicious html code from user input
 app.use(globalErrorHandler)
 
 module.exports = app
-`
+`;
 
 //Follwoing is the Code for server.js
 exports.server_temp = `
@@ -122,7 +124,7 @@ server.close(() => {
 process.exit(1)
 })
 })
-`
+`;
 
 //Follwoing is the Code for controllers/errorController.js
 exports.error_controller_temp = `
@@ -236,7 +238,7 @@ module.exports=( err, req, res, next ) => {
 
 
 }
-`
+`;
 
 //Follwoing is the Code for controllers/factoryHandler.js
 exports.factory_handler_temp = `
@@ -358,7 +360,7 @@ exports.getAll = (Model, populateOptions, options) => {
   })
 }
 
-`
+`;
 
 //Follwoing is the Code for utils/apiFeatures.js
 exports.api_features_temp =
@@ -383,7 +385,7 @@ class APIFeatures {
 
         let queryString = JSON.stringify(queryObj);
         queryString = queryString.replace(` +
-  `/\\b(gt|gte|lt|lte)\\b/g` +
+  '/\\b(gt|gte|lt|lte)\\b/g' +
   `, matchedVal => "$"+matchedVal);
 
         const queryObj2 = JSON.parse(queryString);
@@ -432,7 +434,7 @@ class APIFeatures {
 }
 
 module.exports = APIFeatures;
-`
+`;
 
 //Follwoing is the Code for utils/appError
 exports.app_error_temp = `
@@ -450,7 +452,7 @@ class AppError extends Error {
   }
 }
 module.exports = AppError;
-`
+`;
 
 //Follwoing is the Code for utils/catchAsync
 exports.catch_async_temp = `
@@ -460,4 +462,4 @@ module.exports = ( fn ) => {
   }
 
 }
-`
+`;

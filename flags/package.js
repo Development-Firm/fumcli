@@ -1,4 +1,4 @@
-/* eslint-disable header/header */
+// LICENSE_CODE DevFUM
 //Add the required packages in the packages object below
 const packages = {
   dependencies: {

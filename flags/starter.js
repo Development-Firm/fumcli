@@ -1,5 +1,4 @@
-/* eslint-disable header/header */
-//[object Object]
+// LICENSE_CODE DevFUM
 const {spawn} = require('child_process');
 const path = require('path');
 const fs = require('fs');
@@ -126,8 +125,11 @@ exports.starter = directory_path=>{
   console.log('Creating project starter boilerplate...');
 
   // Create the necessary directories
-  if (!fs.existsSync(directory_path))
-    directories.forEach(dir=>fs.mkdirSync(path.join(directory_path, dir)));
+  directories.forEach(dir=>{
+    const dir_path = path.join(directory_path, dir);
+    if (!fs.existsSync(dir_path))
+      fs.mkdirSync(dir_path);
+  });
 
   // Create template files
   templates.forEach(
