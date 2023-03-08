@@ -25,7 +25,7 @@ const create_model = (directory_path, entity_name, attributes)=>{
     }
     if (type.includes('\''))
     {
-      required = true;
+      unique = true;
       type = type.split('\'').join('');
     }
     if (type.includes('^'))
@@ -34,10 +34,7 @@ const create_model = (directory_path, entity_name, attributes)=>{
       type = type.split('^').join('');
     }
     entity_schema += `${atr_name}:{
-          type: ${type},
-          ${required ? `required: [true, 'Please enter ${atr_name}!'],` : ''}
-          ${unique ? 'unique: true,' : ''}
-          ${trim ? 'trim: true,' : ''}
+          type: ${type},${required ? `\nrequired: [true, 'Please enter ${atr_name}!'],` : ''} ${unique ? '\nunique: true,' : ''}${trim ? '\ntrim: true,' : ''}
       },`;
   });
   model = model.replace('<MODEL>', entity_schema);
@@ -110,6 +107,7 @@ exports.generate_crud = (
     );
     return;
   }
+  console.log(models,controller,routes)
   if (models)
     create_model(directory_path, name, attributes);
   if (controller)

@@ -1,7 +1,7 @@
 exports.config_env_template = `
 NODE_ENV= development
-DATABASE=mongodb://localhost:27017/db_name
-#DATABASE_PASSWORD=
+DATABASE_PASSWORD=fERi4hHH26dr5wTg
+DATABASE = mongodb+srv://fasih:<password>@cluster0.jbj5tnh.mongodb.net/?retryWrites=true&w=majority
 JWT_SECRET=tferfa-efsfy-kfoi-kfam-nfay
 JWT_EXPIRE_TIME=90d
 JWT_COOKIE_EXPIRE_TIME=90
@@ -102,6 +102,7 @@ const DB = process.env.DATABASE.replace(
 '<password>',
 process.env.DATABASE_PASSWORD
 )
+mongoose.set('strictQuery', true)
 mongoose
 .connect(DB, {
 useNewUrlParser: true,
