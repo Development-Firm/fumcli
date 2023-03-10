@@ -44,12 +44,12 @@ const create_model = (directory_path, entity_name, attributes)=>{
   );
   console.log(
     chalk.green(
-      `\nSTATUS: ${entity_name} model has been successfully created\n`
+      `\nSTATUS: ${entity_name} model has been successfully created`
     )
   );
 };
 
-const create_controller = (directory_path, entity_name, attributes)=>{
+const create_controller = (directory_path, entity_name)=>{
   let controller = controller_temp
     .replace(/<NAME>/ug, entity_name)
     .replace(/<CNAME>/ug, entity_name.toUpperCase()[0] + entity_name.slice(1));
@@ -59,11 +59,11 @@ const create_controller = (directory_path, entity_name, attributes)=>{
   );
   console.log(
     chalk.green(
-      `\nSTATUS: ${entity_name} controller has been successfully created\n`
+      `\nSTATUS: ${entity_name} controller has been successfully created`
     )
   );
 };
-const create_router = (directory_path, entity_name, attributes)=>{
+const create_router = (directory_path, entity_name)=>{
   let router = router_temp
     .replace(/<NAME>/ug, entity_name)
     .replace(/<CNAME>/ug, entity_name.toUpperCase()[0] + entity_name.slice(1));
@@ -73,7 +73,7 @@ const create_router = (directory_path, entity_name, attributes)=>{
   );
   console.log(
     chalk.green(
-      `\nSTATUS: ${entity_name} router has been successfully created\n`
+      `\nSTATUS: ${entity_name} router has been successfully created`
     )
   );
   let app = fs.readFileSync(path.join(directory_path, '/app.js'), 'utf-8');
@@ -87,7 +87,7 @@ const create_router = (directory_path, entity_name, attributes)=>{
   );
   console.log(
     chalk.green(
-      '\nSTATUS: Integration has been successfully created\n'
+      '\nSTATUS: Integration was successful!\n'
     )
   );
 };
@@ -105,10 +105,21 @@ exports.generate_crud = (
     );
     return;
   }
-  if (models)
+
+  if (!models && !controller && !routes)
+  {
     create_model(directory_path, name, attributes);
-  if (controller)
-    create_controller(directory_path, name, attributes);
-  if (routes)
-    create_router(directory_path, name, attributes);
+    create_controller(directory_path, name);
+    create_router(directory_path, name);
+  }
+  else
+  {
+    if (models)
+      create_model(directory_path, name, attributes);
+    if (controller)
+      create_controller(directory_path, name);
+    if (routes)
+      create_router(directory_path, name);
+  }
+
 };

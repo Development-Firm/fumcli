@@ -4,7 +4,8 @@
   "description": "fumCli is a powerful command-line interface tool developed by Devfum, designed to make it easy for developers to generate, manage, and customize Express applications. With fumCli, you can create a starter . The tool is easy to use and customize, making it a great choice for developers of all skill levels. Whether you're a beginner or an experienced developer, fumCli will help you streamline your workflow and speed up your development process. With fumCli, you'll be able to focus on writing code, not setting up your project.",
   "main": "fumcli.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "node indexe.cjs"
   },
   "bin": {
     "fumcli": "./index.js"

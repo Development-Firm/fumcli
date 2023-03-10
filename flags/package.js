@@ -21,7 +21,8 @@ const packages = {
     sharp: '^0.31.2',
     slugify: '^1.6.0',
     validator: '^13.6.0',
-    'xss-clean': '^0.1.1'
+    'xss-clean': '^0.1.1',
+    nodemailer: '^6.9.1',
   },
   devDependencies: {
     nodemon: '^2.0.19'

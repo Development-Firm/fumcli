@@ -12,7 +12,7 @@
 <pre><code>- config.env
 - app.js
 - server.js
-- controllers/factoryHandler.js
+- controllers/handlerFactory.js
 - controllers/errorController.js
 - utils/appError.js
 - utils/apiFeatures.js
@@ -31,8 +31,12 @@
   <li>-c or --controller: Generate a controller for the entity</li>
   <li>-r or --routes: Create routes folder</li>
 </ul>
+<h3>Add user feature to the starter template</h3>
+<p>To add a user feature to the existing starter template, use the add-user command:</p>
+<pre><code>fumcli add-user -t &lt;template_number&gt;</code></pre>
+<p>The -t or --template option specifies the number of the template you want to use. By default, it selects template 1. This command generates the necessary files and folders for the user feature, including frontend pages and backend models and APIs. It automatically integrates and applies authentication using JWT.</p>
 <h3>Display help information</h3>
 <p>To display help information, use the -h or --help option:</p>
 <pre><code>fumcli -h</code></pre>
 <h2>License</h2>
-<p>This project is licensed under the MIT License - see the LICENSE.md file for details.</p>
+<p>This project is licensed under the DevFUM License - see the LICENSE.md file for details.</p>
