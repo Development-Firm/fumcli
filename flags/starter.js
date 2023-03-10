@@ -6,12 +6,13 @@ const chalk = require('chalk');
 const {
   app_temp,
   server_temp,
-  factory_handler_temp,
+  handler_factory_temp,
   error_controller_temp,
   app_error_temp,
   catch_async_temp,
   config_env_template,
-  api_features_temp
+  api_features_temp,
+  email_temp
 } = require('../templates/starter_temp');
 const {dev_package_string, dep_package_string} = require('./package');
 
@@ -100,8 +101,8 @@ const templates = [
     temp: server_temp
   },
   {
-    path: 'controllers/factoryHandler.js',
-    temp: factory_handler_temp
+    path: 'controllers/handlerFactory.js',
+    temp: handler_factory_temp
   },
   {
     path: 'controllers/errorController.js',
@@ -118,6 +119,10 @@ const templates = [
   {
     path: 'utils/catchAsync.js',
     temp: catch_async_temp
+  },
+  {
+    path: 'utils/email.js',
+    temp: email_temp
   }
 ];
 
